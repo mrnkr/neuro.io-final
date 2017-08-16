@@ -1,6 +1,7 @@
 {
   "name": "neuro.io",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "System created for surgery logging at the Maciel Hospital - Montevideo, Uruguay",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -10,7 +11,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrnkr/neuro.io-final.git"
+  },
   "dependencies": {
     "@angular/animations": "^4.3.0",
     "@angular/cdk": "^2.0.0-beta.8",
