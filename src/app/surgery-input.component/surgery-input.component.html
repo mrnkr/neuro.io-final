@@ -1,0 +1,62 @@
+<form class="mt-2 mb-4">
+  <md-select placeholder="Cirujano" name="surgery_surgeon" class="mt-4 mb-3" [ngModel]="surgery.surgeon._id" (ngModelChange)="onSelectDoctor($event)" required>
+    <md-option *ngFor="let doc of doctors" [value]="doc._id">
+      {{ doc.last }}, {{ doc.name }}
+    </md-option>
+  </md-select>
+
+  <md-input-container>
+    <input mdInput name="surgery_date" [mdDatepicker]="picker" [(ngModel)]="surgery.scheduled" placeholder="Fecha">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    <md-hint align="start">Puedes no ingresar una fecha, pero para marcar como hecha la misma debe tener fecha</md-hint>
+  </md-input-container>
+  <md-datepicker #picker [touchUi]="true"></md-datepicker>
+
+  <md-input-container class="mt-4">
+   <input type="text" name="surgery_type" mdInput [ngModel]="surgery.type | uppercase" (ngModelChange)="surgery.type = $event" placeholder="Tipo" [mdAutocomplete]="tAuto" required>
+  </md-input-container>
+
+  <md-autocomplete #tAuto="mdAutocomplete">
+    <md-option *ngFor="let type of surgeryTypes" [value]="type">
+      {{ type | uppercase }}
+    </md-option>
+  </md-autocomplete>
+
+  <md-input-container>
+   <input type="text" name="surgery_pathology" mdInput [ngModel]="surgery.pathology | uppercase" (ngModelChange)="surgery.pathology = $event" placeholder="Patología" [mdAutocomplete]="patAuto" required>
+  </md-input-container>
+
+  <md-autocomplete #patAuto="mdAutocomplete">
+    <md-option *ngFor="let pathology of pathologies" [value]="pathology">
+      {{ pathology | uppercase }}
+    </md-option>
+  </md-autocomplete>
+
+  <h4 class="mt-3 mb-0 mat-subheading-2 text-muted">Validaciones</h4>
+  <hr class="mt-0" />
+
+  <div class="row justify-content-around">
+    <md-slide-toggle name="surgery_anes_valid" [checked]="surgery.anes_valid" (change)="setValue(0)">Anestesista</md-slide-toggle>
+    <md-slide-toggle name="surgery_preop_valid" [checked]="surgery.preop_valid" (change)="setValue(1)">Pre-operatorios</md-slide-toggle>
+  </div>
+
+  <div *ngIf="isItToday()">
+    <h4 class="mt-3 mb-0 mat-subheading-2 text-muted">Post-operatorio</h4>
+    <hr class="mt-0" />
+
+    <div class="row justify-content-around">
+      <md-slide-toggle name="surgery_done" [(ngModel)]="surgery.done">Hecha</md-slide-toggle>
+    </div>
+  </div>
+
+  <div *ngIf="surgery.done">
+    <md-input-container>
+      <input mdInput name="surgery_gos" [(ngModel)]="surgery.gos" type="number" min="1" max="5" placeholder="Glasgow Outcome Score">
+    </md-input-container>
+
+    <md-select *ngIf="surgery.gos === 1" class="mt-3" placeholder="Causa de Muerte" [(ngModel)]="surgery.cod" name="surgery_cod">
+      <md-option [value]="true">Neurológica</md-option>
+      <md-option [value]="false">No Neurológica</md-option>
+    </md-select>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+<div class="col px-0">
+  <md-toolbar color="primary">
+    <md-icon class="mr-3" (click)="goBack()">arrow_back</md-icon>
+
+    <span class="mat-title mb-0">{{ title }}</span>
+
+    <md-icon class="ml-auto" (click)="done()">done</md-icon>
+  </md-toolbar>
+
+  <div class="container">
+    <md-tab-group>
+      <md-tab label="Paciente"><app-patient-input [(patient)]="surgery.patient" [editing]="editing"></app-patient-input></md-tab>
+      <md-tab label="Cirugía"><app-surgery-input [(surgery)]="surgery"></app-surgery-input></md-tab>
+      <md-tab label="Comentarios"><app-comments [(comments)]="surgery.comments"></app-comments></md-tab>
+    </md-tab-group>
+  </div>
+</div>

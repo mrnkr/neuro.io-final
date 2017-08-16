@@ -1,0 +1,9 @@
+<form class="px-4">
+  <div class="row justify-content-around align-items-center">
+    <md-input-container>
+      <input mdInput [(ngModel)]="comment.body" (keyup.enter)="sendComment()" name="comment_body" placeholder="Comentario">
+    </md-input-container>
+
+    <button md-raised-button class="ml-3" color="primary" (click)="sendComment()">COMENTAR</button>
+  </div>
+</form>

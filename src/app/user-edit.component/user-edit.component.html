@@ -1,0 +1,52 @@
+<md-toolbar color="primary">
+  <md-icon class="mr-3" (click)="goBack()">arrow_back</md-icon>
+  <span>Edición de usuario</span>
+  <md-icon class="ml-auto" (click)="attemptUpdate()">done</md-icon>
+</md-toolbar>
+<div class="container ovrflw-h pb-3 pt-3">
+  <form>
+    <md-input-container>
+      <input mdInput 
+             type="email" 
+             name="user_email" 
+             [(ngModel)]="user.email" 
+             (keyup.enter)="attemptUpdate()"
+             placeholder="Email" 
+             required
+             [errorStateMatcher]="myErrorStateMatcher">
+      <md-error>Completa este campo, por favor</md-error>
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput 
+             name="user_name" 
+             [(ngModel)]="user.name" 
+             placeholder="Nombre" 
+             (keyup.enter)="attemptUpdate()"
+             required
+             [errorStateMatcher]="myErrorStateMatcher">
+      <md-error>Completa este campo, por favor</md-error>
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput 
+             name="user_last" 
+             [(ngModel)]="user.last" 
+             placeholder="Apellido" 
+             (keyup.enter)="attemptUpdate()"
+             required
+             [errorStateMatcher]="myErrorStateMatcher">
+      <md-error>Completa este campo, por favor</md-error>
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput 
+             type="password" 
+             name="user_pass" 
+             [(ngModel)]="user.password" 
+             (keyup.enter)="attemptUpdate()"
+             placeholder="Contraseña">
+      <md-hint align="start">Deja este campo vacío si no quieres cambiar tu contraseña</md-hint>
+    </md-input-container>
+  </form>
+</div>

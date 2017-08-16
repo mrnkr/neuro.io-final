@@ -1,0 +1,55 @@
+<h2 md-dialog-title>Filtrar cirugias</h2>
+<md-dialog-content>
+  <form>
+    <div class="col">
+      <md-radio-group name="filter_date" [(ngModel)]="filter.scheduled">
+        <div class="row justify-content-between">
+          <md-radio-button [value]="'today'">Solo cirugías de hoy</md-radio-button>
+          <md-radio-button [value]="'tomorrow'">Solo cirugías de mañana</md-radio-button>
+          <md-radio-button [value]="'no-date'">Cirugías sin fecha</md-radio-button>
+        </div>
+      </md-radio-group>
+
+      <md-input-container>
+        <input type="text" name="filter_type" mdInput [ngModel]="filter.type | uppercase" (ngModelChange)="filter.type = $event" placeholder="Tipo" [mdAutocomplete]="tAuto">
+      </md-input-container>
+
+      <md-autocomplete #tAuto="mdAutocomplete">
+        <md-option *ngFor="let type of surgeryTypes" [value]="type">
+          {{ type | uppercase }}
+        </md-option>
+      </md-autocomplete>
+
+      <md-input-container>
+        <input type="text" name="filter_pathology" mdInput [ngModel]="filter.pathology | uppercase" (ngModelChange)="filter.pathology = $event" placeholder="Patología" [mdAutocomplete]="patAuto">
+      </md-input-container>
+
+      <md-autocomplete #patAuto="mdAutocomplete">
+        <md-option *ngFor="let pathology of pathologies" [value]="pathology">
+          {{ pathology | uppercase }}
+        </md-option>
+      </md-autocomplete>
+
+      <div class="row justify-content-between mt-2">
+        <md-slide-toggle name="filter_valid" (change)="filter.valid = $event">Validada</md-slide-toggle>
+        <md-slide-toggle name="filter_done" [checked]="filter.done" (change)="onDoneChange($event)">Hecha</md-slide-toggle>
+      </div>
+
+      <md-select placeholder="Estado post cirugía" name="filter_gos" class="mt-4" [ngModel]="filter.gos" (ngModelChange)="onGosChange($event)">
+        <md-option [value]="true">Vivo</md-option>
+        <md-option [value]="false">Muerto</md-option>
+      </md-select>
+
+      <md-select placeholder="Cirujano" name="filter_doctor" class="mt-5 mb-3" [(ngModel)]="filter.doctor">
+        <md-option *ngFor="let doc of doctors" [value]="doc._id">
+          {{ doc.last }}, {{ doc.name }}
+        </md-option>
+      </md-select>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions class="row justify-content-end">
+  <button md-button class="mr-auto" (click)="clearFilter()">LIMPIAR</button>
+  <button md-button md-dialog-close>CANCELAR</button>
+  <button md-button [disabled]="validateFilter()" [md-dialog-close]="filter">LISTO</button>
+</md-dialog-actions>

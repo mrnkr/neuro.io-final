@@ -1,0 +1,71 @@
+<form class="mt-2">
+  <md-input-container>
+    <input mdInput 
+           name="patient_id" 
+           [ngModel]="patient.id | cedula" 
+           (ngModelChange)="patient.id = $event; emitChange()" 
+           (keyup.enter)="autocomplete()" 
+           [disabled]="editing" 
+           type="text" 
+           placeholder="Cédula" 
+           required
+           [errorStateMatcher]="myErrorStateMatcher">
+    <button mdSuffix 
+            class="search-button" 
+            *ngIf="patient.id.length > 0" 
+            (click)="autocomplete()">
+              <md-icon>search</md-icon>
+    </button>
+    <md-hint align="start">Ingresa la CI del paciente y presiona enter, si está registrado aparecerán sus datos!</md-hint>
+    <md-error>Completa este campo, por favor</md-error>
+  </md-input-container>
+
+  <md-input-container class="mt-4">
+    <input mdInput 
+           name="patient_name" 
+           [(ngModel)]="patient.name" 
+           (keyup)="emitChange()" 
+           type="text" 
+           placeholder="Nombre" 
+           required
+           [errorStateMatcher]="myErrorStateMatcher">
+    <md-error>Completa este campo, por favor</md-error>
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput 
+           name="patient_last" 
+           [(ngModel)]="patient.last" 
+           (keyup)="emitChange()" 
+           type="text" 
+           placeholder="Apellido" 
+           required
+           [errorStateMatcher]="myErrorStateMatcher">
+    <md-error>Completa este campo, por favor</md-error>
+  </md-input-container>
+  
+  <md-input-container>
+    <input mdInput 
+           name="patient_birthdate" 
+           [mdDatepicker]="picker" 
+           [ngModel]="patient.birthdate" 
+           (ngModelChange)="patient.birthdate = $event; emitChange()" 
+           placeholder="Fecha de nacimiento" 
+           required
+           [errorStateMatcher]="myErrorStateMatcher">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    <md-error>Completa este campo, por favor</md-error>
+  </md-input-container>
+  <md-datepicker #picker [touchUi]="true"></md-datepicker>
+
+  <md-input-container>
+    <textarea mdInput 
+              name="patient_background" 
+              [(ngModel)]="patient.background" 
+              (keyup)="emitChange()" 
+              maxlength="256" 
+              placeholder="Historia"></textarea>
+    <md-hint align="start">Ingresa datos extra sobre el paciente</md-hint>
+    <md-hint align="end">{{patient.background.length}} / 256</md-hint>
+  </md-input-container>
+</form>

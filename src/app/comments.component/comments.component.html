@@ -1,0 +1,8 @@
+<md-list class="mt-5">
+  <div *ngFor="let comment of comments">
+    <app-comment-cell [comment]="comment"></app-comment-cell>
+  </div>
+</md-list>
+
+<hr />
+<app-comment-input (onCommentReady)="addComment($event)"></app-comment-input>

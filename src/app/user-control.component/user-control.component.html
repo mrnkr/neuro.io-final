@@ -1,0 +1,14 @@
+<div class="col px-0">
+  <md-toolbar color="primary">
+    <md-icon class="mr-3" (click)="goBack()">arrow_back</md-icon>
+    <span>Control de usuarios</span>
+  </md-toolbar>
+
+  <div class="container mt-2">
+    <md-list>
+      <div *ngFor="let user of users; let i = index">
+        <app-user-cell [(user)]="users[i]" (onUserDelete)="onUserDelete(i)"></app-user-cell>
+      </div>
+    </md-list>
+  </div>
+</div>

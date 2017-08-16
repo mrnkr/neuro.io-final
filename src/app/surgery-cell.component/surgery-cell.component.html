@@ -1,0 +1,20 @@
+<md-list-item class="animated" [ngClass]="animation">
+  <div class="col">
+    <h6 class="mat-subheading">{{ surgery.scheduled | date:'shortDate' }} - {{ surgery.type | uppercase }}</h6>
+    <p class="mat-body-1 text-muted mb-0">{{ surgery.patient.last }}, {{ surgery.patient.name }}</p>
+  </div>
+
+  <div class="row ml-auto align-items-center">
+    <md-icon class="mr-2" [mdTooltip]="surgery.alert === 1 ? 'Pasada de fecha!' : 'Estudios por vencerse!'" mdTooltipPosition="left" *ngIf="surgery.alert > 0">warning</md-icon>
+    <md-icon class="mx-2" [mdTooltip]="'La cirugía está aprobada'" mdTooltipPosition="left" *ngIf="!surgery.done && surgery.anes_valid && surgery.preop_valid">thumb_up</md-icon>
+    <md-icon class="mr-2" [mdTooltip]="'La cirugía ya fue hecha'" mdTooltipPosition="left" *ngIf="surgery.done">done</md-icon>
+
+    <button md-button [mdMenuTriggerFor]="menu"><md-icon>more_vert</md-icon></button>
+  </div>
+
+  <md-menu #menu="mdMenu">
+    <button md-menu-item [routerLink]="'/surgery/' + surgery._id"><md-icon class="mr-2">mode_edit</md-icon>Editar</button>
+    <button md-menu-item (click)="onDeleteClick()"><md-icon class="mr-2">delete</md-icon>Eliminar</button>
+  </md-menu>
+</md-list-item>
+<md-divider class="mt-3 mb-4 animated" [ngClass]="animation"></md-divider>

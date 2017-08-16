@@ -1,0 +1,60 @@
+<md-sidenav-container class="example-container">
+  <md-sidenav #sidenav class="example-sidenav p-0">
+    <div class="nav-banner">
+      <div class="nav-content p-3">
+        <img class="profile-pic" alt="Thank you freepik.com" src="../../assets/dummy.jpg" />
+        <h5 class="mb-0 mat-body-2">{{ user.last }}, {{ user.name }}</h5>
+        <span class="mat-caption">{{ user.email }}</span>
+      </div>
+    </div>
+
+    <md-list>
+      <h3 md-subheader>Herramientas administrativas</h3>
+      <md-list-item [routerLink]="'/sysinfo'">
+        <md-icon md-list-icon>dashboard</md-icon>
+        <h4 md-line>Información del servidor</h4>
+      </md-list-item>
+      <md-list-item *ngIf="user.admin" [routerLink]="'/user_control'">
+        <md-icon md-list-icon>account_circle</md-icon>
+        <h4 md-line>Control de usuarios</h4>
+      </md-list-item>
+      <h3 md-subheader>Mi usuario</h3>
+      <md-list-item [routerLink]="'/edit_user'">
+        <md-icon md-list-icon>mode_edit</md-icon>
+        <h4 md-line>Editar mi usuario</h4>
+      </md-list-item>
+      <md-list-item (click)="logout()">
+        <md-icon md-list-icon>vpn_key</md-icon>
+        <h4 md-line>Cerrar sesión</h4>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <div class="col px-0">
+    <md-toolbar color="primary">
+        <md-icon class="mr-3" (click)="sidenav.toggle()">menu</md-icon>
+        <span class="mat-title mb-0">Neuro.IO</span>
+        <md-icon class="ml-auto" [routerLink]="'/search'">search</md-icon>
+
+        <md-menu #appMenu="mdMenu">
+          <button md-menu-item (click)="openDialog()">Filtrar cirugías</button>
+        </md-menu>
+
+        <md-icon md-icon-button [mdMenuTriggerFor]="appMenu" class="ml-3">more_vert</md-icon>
+    </md-toolbar>
+
+    <div class="container ovrflw-h pb-5 pt-3">
+      <md-list>
+        <div *ngFor="let surgery of surgeries; let i = index">
+          <app-surgery-cell [surgery]="surgery" (onSurgeryDelete)="deleteSurgery(i)"></app-surgery-cell>
+        </div>
+      </md-list>
+
+      <div *ngIf="surgeries.length === 0" class="fill-parent row justify-content-center align-items-center">
+        <span class="mat-subheading-2 text-muted">No hay cirugías que mostrar</span>
+      </div>
+    </div>
+  </div>
+</md-sidenav-container>
+
+<button md-fab class="bottom-right-fix" [routerLink]="'/input'"><md-icon>add</md-icon></button>

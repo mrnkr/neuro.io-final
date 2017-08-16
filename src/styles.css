@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/animate.css/animate.min.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+html, body {
+  height: 100%;
+}
+
+::-webkit-scrollbar { /* QUESTA ROBA E MAGNIFICA!!! - Hides the scrollbar but does not disable its functionality */
+  display: none;
+}
+
+.mat-sidenav-backdrop {
+  z-index: 3 !important;
+}
+
+.fill-parent {
+  height: 100%;
+}
+
+.bottom-right-fix {
+  position: fixed !important;
+  bottom: 16px;
+  right: 16px;
+  z-index: 2 !important;
+}
+
+.bottom-right-fix-rise {
+  position: fixed !important;
+  bottom: 64px;
+  right: 16px;
+  z-index: 2 !important;
+}
+
+.md-icon-16 {
+  font-size: 16px;
+}
+
+.ovrflw-h {
+  overflow: hidden;
+}

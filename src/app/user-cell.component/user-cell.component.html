@@ -1,0 +1,19 @@
+<md-list-item class="animated" [ngClass]="animation">
+  <div class="col">
+    <div class="row align-items-center pl-3 mb-2">
+      <md-icon class="mr-2" *ngIf="user.verified" [mdTooltip]="'Usuario verificado'">verified_user</md-icon>
+      <h6 class="mat-subheading p-0 m-0">{{ user.email }}</h6>
+    </div>
+
+    <p class="mat-body-1 text-muted mb-0">{{ user.last }}, {{ user.name }}</p>
+  </div>
+
+  <button md-button [disabled]="disabled" class="ml-auto" [mdMenuTriggerFor]="menu"><md-icon>more_vert</md-icon></button>
+
+  <md-menu #menu="mdMenu">
+    <button md-menu-item (click)="onChangeClick(1)"><md-icon class="mr-2">verified_user</md-icon>{{ user.active ? 'Desactivar' : 'Activar' }}</button>
+    <button md-menu-item (click)="onChangeClick(0)"><md-icon class="mr-2">gavel</md-icon>{{ user.admin ? 'Convertir en usuario normal' : 'Convertir en administrador' }}</button>
+    <button md-menu-item (click)="onDeleteClick()"><md-icon class="mr-2">delete</md-icon>Eliminar</button>
+  </md-menu>
+</md-list-item>
+<md-divider class="mt-3 mb-4 animated" [ngClass]="animation"></md-divider>

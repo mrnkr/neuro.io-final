@@ -1,0 +1,45 @@
+.example-container {
+  height: 100%;
+  overflow: visible;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.nav-banner {
+  position: relative;
+
+  height: 180px;
+  width: 320px;
+
+  margin: 0;
+
+  background-image: url('../../assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.nav-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  color: #ffffff;
+}
+
+.profile-pic {
+  height: 64px;
+  width: 64px;
+
+  margin-bottom: 16px;
+
+  border-radius: 50%;
+}

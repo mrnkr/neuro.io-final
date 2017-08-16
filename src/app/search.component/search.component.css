@@ -1,0 +1,7 @@
+.searchbar {
+  color: #fff;
+  background-color: transparent;
+  border-style: none;
+
+  flex: 1 1 auto;
+}

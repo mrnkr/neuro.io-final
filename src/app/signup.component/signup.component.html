@@ -1,0 +1,68 @@
+<div class="container-fluid fill-parent pic-background">
+  <div class="container fill-parent">
+    <div class="row align-items-center justify-content-center fill-parent">
+      <md-card class="p-0 m-2">
+        <md-toolbar color="primary">
+          <md-icon class="mr-3" (click)="goBack()">arrow_back</md-icon>
+          <span>Registro de usuario</span>
+        </md-toolbar>
+        <md-card-content class="pt-4 px-3">
+          <form>
+            <md-input-container>
+              <input mdInput 
+                     type="email" 
+                     name="user_email" 
+                     [(ngModel)]="user.email" 
+                     placeholder="Email" 
+                     (keyup.enter)="attemptRegistration()"
+                     required
+                     [errorStateMatcher]="myErrorStateMatcher">
+              <md-error>Completa este campo con un email valido, por favor</md-error>
+            </md-input-container>
+
+            <md-input-container>
+              <input mdInput 
+                     name="user_name" 
+                     [(ngModel)]="user.name" 
+                     placeholder="Nombre" 
+                     (keyup.enter)="attemptRegistration()"
+                     required
+                     [errorStateMatcher]="myErrorStateMatcher">
+              <md-error>Completa este campo, por favor</md-error>
+            </md-input-container>
+
+            <md-input-container>
+              <input mdInput 
+                     name="user_last" 
+                     [(ngModel)]="user.last" 
+                     placeholder="Apellido" 
+                     (keyup.enter)="attemptRegistration()"
+                     required
+                     [errorStateMatcher]="myErrorStateMatcher">
+              <md-error>Completa este campo, por favor</md-error>
+            </md-input-container>
+
+            <md-input-container>
+              <input mdInput 
+                     type="password" 
+                     name="user_pass" 
+                     [(ngModel)]="user.password" 
+                     placeholder="Contraseña" 
+                     (keyup.enter)="attemptRegistration()"
+                     required
+                     [errorStateMatcher]="myErrorStateMatcher">
+              <md-error>Completa este campo, por favor</md-error>
+            </md-input-container>
+          </form>
+        </md-card-content>
+
+        <md-card-actions class="px-4 pb-4">
+          <div class="row justify-content-end">
+            <button md-button color="primary" (click)="goBack()">CANCELAR</button>
+            <button md-button color="primary" class="mx-3" (click)="attemptRegistration()">REGISTRARSE</button>
+          </div>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+</div>

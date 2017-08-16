@@ -1,0 +1,55 @@
+<div class="col px-0">
+  <md-toolbar color="primary">
+    <md-icon class="mr-3" (click)="goBack()">arrow_back</md-icon>
+    <span class="mat-title mb-0">Información del servidor</span>
+  </md-toolbar>
+
+  <div class="container py-3">
+    <md-card>
+      <md-card-header>
+        <span class="mat-headline my-0">Uptime</span>
+      </md-card-header>
+      <md-card-content class="mt-3 text-center">
+        <span class="mat-subheading-2 text-muted mb-0">{{ secondsToHms(sysinfo.uptime) }}</span>
+      </md-card-content>
+    </md-card>
+
+    <md-card class="mt-3">
+      <md-card-header>
+        <span class="mat-headline my-0">CPU</span>
+      </md-card-header>
+      <md-card-content class="mt-3 text-center">
+        <span class="mat-subheading-2 text-muted mb-0">{{ sysinfo.cpus[0].model }}</span>
+      </md-card-content>
+    </md-card>
+
+    <md-card class="mt-3">
+      <md-card-header>
+        <div class="row justify-content-between align-items-center px-3" style="width: 100%">
+          <span class="mat-headline my-0">Memoria</span>
+          <span class="mat-body-1 text-muted">{{ humanReadable(sysinfo.mem.total - sysinfo.mem.free) }}GB / {{ humanReadable(sysinfo.mem.total) }}GB</span>
+        </div>
+      </md-card-header>
+      <md-card-content class="mt-3">
+        <div style="display: block">
+          <canvas baseChart
+                      [data]="memoryChartData"
+                      [labels]="memoryChartLabels"
+                      [chartType]="'doughnut'"></canvas>
+        </div>
+      </md-card-content>
+    </md-card>
+
+    <md-card class="mt-3">
+      <md-card-header>
+        <span class="mat-headline my-0">Sistema Operativo</span>
+      </md-card-header>
+      <md-card-content class="mt-3">
+        <div class="row justify-content-between align-items-center px-5">
+          <img class="os-logo" [src]="getOsLogo(sysinfo.platform.type)" />
+          <span class="mat-subheading-2 text-muted mb-0">{{ sysinfo.platform.type === 'Linux' ? 'Linux' : (sysinfo.platform.type === 'Windows_NT' ? 'Windows' : 'MacOS') }} {{ sysinfo.platform.arch }}</span>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

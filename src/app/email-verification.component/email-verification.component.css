@@ -1,0 +1,13 @@
+.min-width {
+  min-width: 60%;
+}
+
+.pic-background {
+  background-image: url('../../assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+md-input-container {
+  width: 100%;
+}

@@ -1,0 +1,17 @@
+<div class="col px-0">
+  <md-toolbar color="primary">
+    <md-icon class="mr-3" (click)="goBack()">arrow_back</md-icon>
+
+    <input class="searchbar" placeholder="Buscar" (keyup)="performSearch()" [(ngModel)]="searchText">
+
+    <md-icon class="ml-3" *ngIf="searchText.length > 0" (click)="clearSearch()">close</md-icon>
+  </md-toolbar>
+
+  <div class="container">
+    <md-list>
+      <md-list-item *ngFor="let res of searchResults" [routerLink]="'/main/' + res._id">
+        <h6 class="mat-subheading-2 my-auto p-0">{{ res.id | cedula }} - {{ res.last }}, {{ res.name }}</h6>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>
